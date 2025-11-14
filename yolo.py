@@ -6,11 +6,16 @@ from ultralytics import YOLO
 import numpy as np
 import matplotlib.pyplot as plt
 
-video_path = r"C:\Users\Vitya\PycharmProjects\FallingBabka\бабка падает.mp4" #видео путь
+video_path = r"C:\Users\Vitya\PycharmProjects\FallingBabka\скейт падение .mp4" #видео путь
 base_dir = os.path.dirname(video_path)
 
+"""
+зеленый цвет - бабка в норме, с ней ничего не происходит
+желтый цвет - бабка лежит, но пока не умерла
+красный цвет - бабка лежит неподвижно, поэтому, по хорошему бы ее поднять
+"""
 #конфигурация файлов
-output_path = os.path.join(base_dir, "output_yolo_fall_v3.mp4")
+output_path = os.path.join(base_dir, "yolo.mp4")
 fall_dir = os.path.join(base_dir, "fall_screens")
 os.makedirs(fall_dir, exist_ok=True)
 db_path = os.path.join(base_dir, "fall_events.db")
@@ -33,6 +38,7 @@ conn.commit()
 
 #загрузка модели
 model = YOLO("yolov8n-pose.pt")
+
 #model2 = YOLO("yolov8n-seg.pt")
 
 #настройка видео вывода
